@@ -6,6 +6,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import CloseIcon from '@material-ui/icons/Close'
 
 import { green } from '@material-ui/core/colors'
+import { red } from '@material-ui/core/colors'
 import IconButton from '@material-ui/core/IconButton'
 import MuiSnackbar from '@material-ui/core/Snackbar'
 import SnackbarContent from '@material-ui/core/SnackbarContent'
@@ -13,12 +14,17 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const variantIcon = {
   success: Check,
+  danger: Check,
   info: InfoIcon
 }
+
 
 const useStyles = makeStyles(theme => ({
   success: {
     backgroundColor: green['500']
+  },
+  danger: {
+    backgroundColor: red['500']
   },
   info: {
     backgroundColor: theme.palette.primary.main
@@ -64,7 +70,7 @@ SnackbarContentWrapper.propTypes = {
   className: PropTypes.string,
   message: PropTypes.string,
   onClose: PropTypes.func,
-  variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired
+  variant: PropTypes.oneOf(['error', 'info', 'success', 'warning','danger']).isRequired
 }
 
 export default function Snackbar(props) {
@@ -92,7 +98,7 @@ export default function Snackbar(props) {
 Snackbar.propTypes = {
   open: PropTypes.bool,
   message: PropTypes.string.isRequired,
-  variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
+  variant: PropTypes.oneOf(['error', 'info', 'success', 'warning','danger']).isRequired,
   onClose: PropTypes.func,
   autoHideDuration: PropTypes.number
 }

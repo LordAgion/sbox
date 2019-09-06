@@ -21,6 +21,14 @@ export default class Home extends PureComponent {
 
   uploadFile(e) {
     const file = e.target.files[0]
+
+    if (file.size >= 10* 1024*1024) {
+      console.log('aborted')
+      //alert("File is too big")
+      this.setState({ isSnackbarOpen: true, fileName: null })
+      return 
+    }
+
     createFile(file)
       .then((response) => {
         if (response && response.status === 200) {
@@ -67,10 +75,10 @@ export default class Home extends PureComponent {
           open={this.state.isSnackbarOpen}
           autoHideDuration={6000}
           onClose={this.onSnackbarClose}
-          variant='success'
+          variant= {this.state.fileName ? 'success': 'danger'}
           message={`
-            ${this.state.fileName ? this.state.fileName : 'File'}
-            uploaded
+            ${(this.state.fileName !=null) ? this.state.fileName + ' file uploaded' : 'error 10mb upload limit'}
+             
           `}
         />
       </div>
